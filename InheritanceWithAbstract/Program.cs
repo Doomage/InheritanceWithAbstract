@@ -10,12 +10,33 @@ namespace InheritanceWithAbstract
     {
         static void Main(string[] args)
         {
-            // The code provided will print ‘Hello World’ to the console.
-            // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
-            Console.WriteLine("Hello World!");
-            Console.ReadKey();
 
-            // Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
+            List<Animal> AnimalList = new List<Animal>();
+
+            AnimalList.Add(new Dog("Pug"));
+            AnimalList.Add(new Cat("Ragdoll"));
+            AnimalList.Add(new Dog("Labrador"));
+            AnimalList.Add(new Snake("Cobra"));
+
+            foreach (var animal in AnimalList)
+            {
+                animal.Eat();
+                animal.MakeNoise();
+                if (animal is IWalk)
+                {
+                    GoForAWalk((IWalk)animal);
+                }
+                else
+                {
+                    Console.WriteLine("Snakes cant Walk");
+                }
+            }
+            Console.ReadKey();
+        }
+
+        static void GoForAWalk(IWalk WalkingAnimal)
+        {
+            WalkingAnimal.Walking();
         }
     }
 }
